@@ -28,4 +28,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function subscrip()
+    {
+        return $this->belongsTo(Subscription::class,'id','user_id');
+    }
 }

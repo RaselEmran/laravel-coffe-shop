@@ -12,7 +12,7 @@
 			</a>
 		</li>
         <li class="nav-item">
-            <a href="{{route('home')}}" class="nav-link{{ Request::is('home')  ? ' actve' : '' }}">
+            <a href="{{route('user.subscription')}}" class="nav-link{{ Request::is('user/subscription')  ? ' actve' : '' }}">
                 <i class="icon-play"></i>
                 <span>
 					Subscription

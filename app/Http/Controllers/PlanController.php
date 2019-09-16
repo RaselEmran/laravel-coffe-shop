@@ -23,6 +23,10 @@ class PlanController extends Controller
 
     public function choose(Request $request)
     {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+       // $customer=\Stripe\Customer::all(["limit" => 3]);
+       // dd($customer)
         $plan =$request->plan;
         return view('plans.chose', compact('plan'));
     }

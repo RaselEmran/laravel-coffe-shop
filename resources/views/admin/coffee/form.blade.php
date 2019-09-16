@@ -99,5 +99,5 @@
 @endsection
 
 @push('admin.scripts')
-<script src="{{asset('js/pages/coffee.js')}}"></script>
+ <script src="{{asset('js/pages/coffee.js')}}"></script>
  @endpush

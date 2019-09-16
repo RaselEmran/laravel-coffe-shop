@@ -34,6 +34,10 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/subscription', 'SubscriptionController@user_subcription')->name('user.subscription');
+Route::get('/change/subscription/{id}', 'SubscriptionController@change_subcription')->name('change.subscription');
+Route::post('/post/plan', 'SubscriptionController@post_plan')->name('user.post.plan');
+Route::delete('/user/subscription/destroy/{id}','SubscriptionController@cancel')->name('user.subscription.destroy');
 
 
 Route::get('/', 'FrontController@index')->name('front.index');
@@ -71,5 +75,5 @@ Route::get('/landing/pages','LandingController@index')->name('landing');
 Route::post('/card-payment','LandingController@payment')->name('card-payment');
 Route::get('/stripe','LandingController@stripe')->name('stripe');
 Route::post( '/stripe','LandingController@stripePost' )->name('stripe.post');
- Route::get('/plans', 'PlanController@choose')->name('plans.chose');
- Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
+Route::get('/plans', 'PlanController@choose')->name('plans.chose');
+Route::post('/subscription', 'SubscriptionController@create')->name('subscription.create');
