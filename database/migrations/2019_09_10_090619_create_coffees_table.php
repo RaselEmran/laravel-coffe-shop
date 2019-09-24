@@ -17,6 +17,8 @@ class CreateCoffeesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
+            $table->string('product_id')->nullable();
+            $table->double('price',10,2)->nullable();
             $table->integer('intensity')->default(0);
             $table->integer('total_intensity')->default(0);
             $table->text('description')->nullable();

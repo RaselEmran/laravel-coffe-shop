@@ -60,6 +60,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
 
    Route::resource('package', 'PackageController');
    Route::resource('coffee', 'CoffeeController');
+   Route::get('/member','MemberController@index')->name('member');
+   Route::get('/nextdelivery','MemberController@nextdelivery')->name('nextdelivery');
+   Route::get('/message','MessegeController@index')->name('messege.index');
+   Route::get('/message/send','MessegeController@create')->name('messege.send');
+   Route::post('/message/send','MessegeController@store')->name('messege.postsend');
    Route::get('/api','ApiController@index')->name('api');
    Route::post('/api','ApiController@api_store')->name('api.store');
 });

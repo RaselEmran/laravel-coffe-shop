@@ -23,6 +23,7 @@ class CreateCoffeeOrdersTable extends Migration
             $table->date('order_date')->nullable();
             $table->date('delivary_date')->nullable();
             $table->string('plan_id')->nullable();
+            $table->string('status')->default('order')->nullable();
             $table->timestamps();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

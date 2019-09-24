@@ -345,7 +345,7 @@ Derfor tilbyder vi fra 15. Oktober en bionedbrydelig Nespresso® kompatible kaps
                                     <input type="hidden" id="pkg" value="">
                                     <input type="hidden" id="pkg_price" value="">
                                     <input type="hidden" id="product_id" value="">
-                                    <a href="#step-3"> <button type="button" class="btn btn-dark"> <span class="h1 text-white" data-price="149" data-product="prod_FnQrKwze5cVvdV" data-package="1" id="pkg_button"> 149 </span></button> </a>
+                                    <a href="#step-3"> <button type="button" class="btn btn-dark"> <span class="h1 text-white" data-price="149" data-product="prod_FrXCObEPubVSvI" data-package="1" id="pkg_button"> 149 </span></button> </a>
                                 </div>
                             </div>
                             <div class="col-md-4 mr-auto ml-3">
@@ -356,7 +356,7 @@ Derfor tilbyder vi fra 15. Oktober en bionedbrydelig Nespresso® kompatible kaps
                                     <p> Gratis dag-til-dag levering til din postkasse. inklusiv fragt </p>
 
                                     <br>
-                                    <a href="#step-3"> <button type="button" class="btn btn-dark"> <span class="h1 text-white" data-price="229" data-package="2" data-product="prod_FnQwqK2VpbQSjN" id="pkg_button"> 229 </span></button> </a>
+                                    <a href="#step-3"> <button type="button" class="btn btn-dark"> <span class="h1 text-white" data-price="229" data-package="2" data-product="prod_FrXCObEPubVSvI" id="pkg_button"> 229 </span></button> </a>
                                 </div>
                             </div>
                         </div>
@@ -387,7 +387,7 @@ Derfor tilbyder vi fra 15. Oktober en bionedbrydelig Nespresso® kompatible kaps
                                     <br>
                                     <p class="interval_title">sendes hver 4 uge</p>
                                     <br>
-                                    <a href="#step-4"> <button type="button" id="pkg1_sub1" data-id="1" data-plan="3" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
+                                    <a href="#step-4"> <button type="button" id="pkg1_sub1" data-id="1" data-plan="1" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
                                 </div>
                             </div>
                             <div class="col-md-4 text-center mt-auto">
@@ -400,7 +400,7 @@ Derfor tilbyder vi fra 15. Oktober en bionedbrydelig Nespresso® kompatible kaps
                                     <br>
                                     <p class="interval_title">sendes hver 8. Uge</p>
                                     <br>
-                                    <a href="#step-4"> <button type="button" id="pkg1_sub2" data-id="2" data-plan="4" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
+                                    <a href="#step-4"> <button type="button" id="pkg1_sub2" data-id="2" data-plan="2" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
                                 </div>
                             </div>
                             <div class="col-md-4 text-center mt-auto">
@@ -414,7 +414,7 @@ Derfor tilbyder vi fra 15. Oktober en bionedbrydelig Nespresso® kompatible kaps
                                     <br>
                                     <p class="interval_title">Sendes hver 12 uge</p>
                                     <br>
-                                    <a href="#step-4"> <button type="button" id="pkg1_sub3" data-id="3" data-plan="5" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
+                                    <a href="#step-4"> <button type="button" id="pkg1_sub3" data-id="3" data-plan="3" class="btn btn-dark text-uppercase px-4 py-2 font-weight-bold ">klik her</button> </a>
                                 </div>
                             </div>
                         </div>

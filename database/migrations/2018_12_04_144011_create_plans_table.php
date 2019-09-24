@@ -19,6 +19,8 @@ class CreatePlansTable extends Migration
             $table->string('slug')->unique();
             $table->string('stripe_plan');
             $table->float('cost');
+            $table->string('intervals')->nullable();
+            $table->string('interval_count')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

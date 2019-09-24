@@ -49,9 +49,9 @@
                 <tbody>
                 @foreach($coffees as $coffee)
                 <tr>
-                    <td>{{$loop->index}}</td>
+                    <td>{{$loop->index+1}}</td>
                     <td><a href="{{route('admin.coffee.show', $coffee->id)}}">{{$coffee->title}}</a></td>
-                    <td>{{Str::limit($coffee->description, 50)}}</td>
+                    <td>{{str_limit($coffee->description, 50)}}</td>
                     <td>{{$coffee->intensity .' / '. $coffee->total_intensity}}</td>
                     <td><span class="badge badge-{{$coffee->status == 1 ? 'success' : 'danger' }}">Active</span></td>
                     <td class="text-center">
@@ -64,7 +64,7 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="{{route('admin.coffee.show', $coffee->id)}}" class="dropdown-item"><i class="icon-eye"></i> View</a>
                                     <a href="{{route('admin.coffee.edit', $coffee->id)}}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                    <a href="{{route('admin.coffee.delete', $coffee->id)}}" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                    <a href="" data-url="{{route('admin.coffee.destroy', $coffee->id)}}" class="dropdown-item" id="delete_item" data-id="{{ $coffee->id }}"><i class="icon-trash"></i> Delete</a>
                                 </div>
                             </div>
                         </div>

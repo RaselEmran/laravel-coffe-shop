@@ -7,7 +7,7 @@
             <div class="d-flex">
                 <div class="breadcrumb">
                     <a href="{{route('admin.dashboard')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <span class="breadcrumb-item active">Coffee Packege</span>
+                    <span class="breadcrumb-item active">Incoming Messege</span>
                 </div>
 
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -21,8 +21,8 @@
 @section('content')
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">Basic datatable
-                <a href="{{route('admin.package.create')}}" class="btn btn-link"> <i class="icon-stack-plus mr-1"></i> Add Coffee Packege</a>
+            <h5 class="card-title">
+                <a href="{{route('admin.messege.send')}}" class="btn btn-link"> <i class="icon-stack-plus mr-1"></i> Send Messege</a>
             </h5>
             <div class="header-elements">
                 <div class="list-icons">
@@ -34,41 +34,26 @@
 
         <div class="card-body">
 
-
+         <h2>Sending Messege</h2>
             <table class="table datatable-basic">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Item Name</th>
-                    <th>Subscription Type</th>
-                    <th>Interval Count</th>
-                    <th>Price</th>
-                    <th class="text-center">Actions</th>
+                    <th>Receiving Name</th>
+                    <th>Email</th>
+                    <th>Messege</th>
+                    <th>Send Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($plans as $plan)
+                @foreach($send as $s)
                 <tr>
-                    <td>{{$loop->index+1}}</td>
-                 <td>{{$plan->name}}</td>
-                 <td>{{$plan->intervals}}</td>
-                 <td>{{$plan->interval_count}}</td>
-                 <td>{{$plan->cost}}</td>
-                  <td class="text-center">
-                        <div class="list-icons">
-                            <div class="dropdown">
-                                <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                    <i class="icon-menu9"></i>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{route('admin.package.show', $plan->id)}}" class="dropdown-item"><i class="icon-eye"></i> View</a>
-                                    <a href="{{route('admin.package.edit', $plan->id)}}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                    <a href="" data-url="{{route('admin.package.destroy', $plan->id)}}" class="dropdown-item" id="delete_item" data-id="{{ $plan->id }}"><i class="icon-trash"></i> Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
+                 <td>{{$loop->index+1}}</td>
+                 <td>{{$s->user->first_name}} {{$s->user->last_name}}</td>
+                 <td>{{$s->user->email}}</td>
+                 <td>{{$s->body}}</td>
+                 <td>{{$s->date}}</td>
+    
                 </tr>
                     @endforeach
                 </tbody>

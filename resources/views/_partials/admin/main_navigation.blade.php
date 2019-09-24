@@ -28,15 +28,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' acive' : '' }}">
+            <a href="{{route('admin.nextdelivery')}}" class="nav-link{{ Request::is('admin/nextdelivery*') ? ' active' : '' }}">
                 <i class="icon-sort-time-asc"></i>
                 <span>
-					{{_('Delivery')}}
+					{{_('Next Delivery')}}
 				</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' acive' : '' }}">
+            <a href="{{route('admin.messege.index')}}" class="nav-link{{ Request::is('admin/message*') ? ' active' : '' }}">
                 <i class="icon-comments"></i>
                 <span>
 					{{_('Message')}}
@@ -44,7 +44,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' acive' : '' }}">
+            <a href="{{ route('admin.member') }}" class="nav-link{{ Request::is('admin/member*') ? ' active' : '' }}">
                 <i class="icon-user"></i>
                 <span>
 					{{_('Member')}}
@@ -52,7 +52,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.coffee.index')}}" class="nav-link{{ (Request::is('admin/coffee*') ) ? ' acive' : '' }}">
+            <a href="{{route('admin.coffee.index')}}" class="nav-link {{ Request::is('admin/coffee*') ? ' active' : '' }}">
                 <i class="icon-play"></i>
                 <span>
 					{{__('Coffee')}}
@@ -60,26 +60,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.package.index')}}" class="nav-link{{ (Request::is('admin/package*') ) ? ' acive' : '' }}">
+            <a href="{{route('admin.package.index')}}" class="nav-link{{ Request::is('admin/package*') ? ' active' : '' }}">
                 <i class="icon-play"></i>
                 <span>
-					{{__('Packages')}}
-				</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' actie' : '' }}">
-                <i class="icon-user-check"></i>
-                <span>
-					{{__('User')}}
-				</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' actve' : '' }}">
-                <i class="icon-hat"></i>
-                <span>
-					{{_('Role')}}
+					{{__('Product Plan')}}
 				</span>
             </a>
         </li>

@@ -21,8 +21,8 @@
 @section('content')
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Add New Coffee
-            <a href="{{route('admin.coffee.index')}}" class="btn btn-link"> <i class="icon-eye mr-1"></i> Coffee List</a>
+        <h5 class="card-title">Add New Package
+            <a href="{{route('admin.package.index')}}" class="btn btn-link"> <i class="icon-eye mr-1"></i> Package List</a>
         </h5>
         <div class="header-elements">
             <div class="list-icons">
@@ -34,40 +34,52 @@
 
     <div class="card-body">
         @if(isset($model))
-            {!! Form::model($model, ['route' => ['admin.coffee.update', $model->id], 'class' => 'form-validate-jquery', 'id' => 'content_form', 'method' => 'PUT', 'files' => true]) !!}
+            {!! Form::model($model, ['route' => ['admin.package.update', $model->id], 'class' => 'form-validate-jquery', 'id' => 'content_form', 'method' => 'PUT', 'files' => true]) !!}
         @else
-            {!! Form::open(['route' => 'admin.coffee.store', 'class' => 'form-validate-jquery', 'id' => 'content_form', 'files' => true, 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'admin.package.store', 'class' => 'form-validate-jquery', 'id' => 'content_form', 'files' => true, 'method' => 'POST']) !!}
         @endif
         <fieldset class="mb-3">
             <legend class="text-uppercase font-size-sm font-weight-bold">{{isset($model) ? __('update') : __('Create')}} <span class="text-danger">*</span> <small> {{ __('required') }} </small></legend>
             <div class="row">
+           
+                    <div class="col-lg-12">
+                    @if (!isset($model))
+                    <div class="form-group">
+                        {{ Form::label('stripe_plan', __('Coffee Title') , ['class' => 'col-form-label required']) }}
+                      {{ Form::select('stripe_plan',$coffee,null, ['class' => 'form-control select', 'data-placeholder' =>  __('Coffee'), 'data-parsley-errors-container' => '#client_category_error'])
+                      }}
+                    </div>
+                       @else
+                     <div class="form-group">
+                        {{ Form::label('name', __('Coffee Title') , ['class' => 'col-form-label']) }}
+                        {{ Form::text('up', null, ['class' => 'form-control', 'placeholder' =>  __('Coffee Title'),'readonly'=>'']) }}
+                    </div>
+                  @endif
+                </div>
+             
+                 
                 <div class="col-lg-12">
                     <div class="form-group">
-                        {{ Form::label('title', __('Coffee Title') , ['class' => 'col-form-label required']) }}
-                        {{ Form::text('title', Null, ['class' => 'form-control', 'placeholder' =>  __('Coffee Title'), 'required' => '']) }}
+                        {{ Form::label('name', __('Plan Name') , ['class' => 'col-form-label required']) }}
+                        {{ Form::text('name', Null, ['class' => 'form-control', 'placeholder' =>  __('Plan Name'), 'required' => '']) }}
                     </div>
                 </div>
-
+               @if (!isset($model))
                 <div class="col-lg-12">
                     <div class="form-group">
-                        {{ Form::label('intensity', __('Coffee Intensity') , ['class' => 'col-form-label required']) }}
-                        {{ Form::text('intensity', Null, ['class' => 'form-control', 'placeholder' =>  __('Coffee Intensity'), 'required' => '']) }}
+                        {{ Form::label('intervals', __('Interval') , ['class' => 'col-form-label required']) }}
+                          {{Form::select('intervals', ['month' => 'month', 'day' => 'day','week'=>'week','year'=>'year'], Null, ['class' => 'form-control select' ])}}
                     </div>
                 </div>
-
+                 @endif
+                @if (!isset($model))
                 <div class="col-lg-12">
                     <div class="form-group">
-                        {{ Form::label('total_intensity', __('Total Intensity') , ['class' => 'col-form-label required']) }}
-                        {{ Form::text('total_intensity', Null, ['class' => 'form-control', 'placeholder' =>  __('Total Intensity'), 'required' => '']) }}
+                        {{ Form::label('interval_count', __('Interval Count') , ['class' => 'col-form-label required']) }}
+                          {{ Form::text('interval_count', Null, ['class' => 'form-control', 'placeholder' =>  __('Interval Count '), 'required' => '']) }}
                     </div>
                 </div>
-
-                 <div class="col-lg-12">
-                    <div class="form-group">
-                        {{ Form::label('price', __('Price ') , ['class' => 'col-form-label required']) }}
-                        {{ Form::text('price', Null, ['class' => 'form-control', 'placeholder' =>  __('Price '), 'required' => '']) }}
-                    </div>
-                </div>
+                 @endif
 
             </div>
             <div class="row">
