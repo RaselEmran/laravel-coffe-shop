@@ -41,8 +41,11 @@
                     <th>Member Name</th>
                     <th>Email</th>
                     <th>Plan Name</th>
+                    <th>Product Name</th>
                     <th>Delivari Type</th>
+                    <th>Status</th>
                     <th>Delivari Date</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,12 +55,21 @@
                  <td>{{$d->user->first_name}} {{$d->user->last_name}}</td>
                  <td>{{$d->user->email}}</td>
                  <td>{{$d->plan->name}}</td>
+                 <td>{{$d->plan->coffee->title}}</td>
                  <td>Every {{$d->plan->interval_count}} {{$d->plan->intervals}}</td>
+                 <td>
+                     @if ($d->status=='order')
+                       <span class="badge badge-info">Order</span>
+                      @elseif($d->status=='delivari') 
+                      <span class="badge badge-success">Delivari</span>
+                     @endif
+                 </td>
                  <td>
                     {{date("F d Y",strtotime($d->delivary_date))}}
                    
                     
                   </td>
+                  <td><a href="" class="btn btn-danger"  data-id="{{ $d->id }}" data-url="{{ route('admin.delivari.order',$d->id) }}" id="change_status">Delivari To</a></td>
                 </tr>
                     @endforeach
                 </tbody>
@@ -72,6 +84,8 @@
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
 <script>
-      $('.datatable-basic').DataTable();
+      $('.datatable-basic').DataTable({
+        responsive: true
+      });
 </script>
 @endpush

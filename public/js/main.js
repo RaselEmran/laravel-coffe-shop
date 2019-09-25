@@ -415,6 +415,78 @@ $(document).ready(function() {
     });
 
     /*
+     * For Status Change
+     */
+    $(document).on('click', '#change_status', function(e) {
+        e.preventDefault();
+        var row = $(this).data('id');
+        var url = $(this).data('url');
+
+        $('#status_loading_' + row).show();
+        swal({
+                title: "Are you sure?",
+                text: 'To Confirm Delivari',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: url,
+                        method: 'GET',
+                        contentType: false, // The content type used when sending data to the server.
+                        cache: false, // To unable request pages to be cached
+                        processData: false,
+                        dataType: 'JSON',
+                        success: function(data) {
+                            new PNotify({
+                                title: 'Well Done!',
+                                text: data.message,
+                                type: 'success',
+                                addclass: 'alert alert-styled-left',
+                            });
+                            if (data.goto) {
+                                setTimeout(function() {
+                                    window.location.href = data.goto;
+                                }, 2500);
+                            }
+
+                        },
+                        error: function(data) {
+                            var jsonValue = $.parseJSON(data.responseText);
+                            const errors = jsonValue.errors
+                            if (errors) {
+                                var i = 0;
+                                $.each(errors, function(key, value) {
+                                    new PNotify({
+                                        title: 'Something Wrong!',
+                                        text: value,
+                                        type: 'error',
+                                        addclass: 'alert alert-danger alert-styled-left',
+                                    });
+                                    i++;
+                                });
+                            } else {
+                                new PNotify({
+                                    title: 'Something Wrong!',
+                                    text: jsonValue.message,
+                                    type: 'error',
+                                    addclass: 'alert alert-styled-left',
+                                });
+                            }
+                            $('#status_loading_' + row).hide();
+                            $('#status_' + row).show();
+                        }
+                    });
+                } else {
+                    $('#status_loading_' + row).hide();
+                    $('#status_' + row).show();
+                }
+            });
+    });
+
+    /*
      * For Date Picker
      */
     var locatDate = moment.utc().format('YYYY-MM-DD');

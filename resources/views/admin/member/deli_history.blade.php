@@ -7,7 +7,7 @@
             <div class="d-flex">
                 <div class="breadcrumb">
                     <a href="{{route('admin.dashboard')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <span class="breadcrumb-item active">Coffee Packege</span>
+                    <span class="breadcrumb-item active">Delivari History</span>
                 </div>
 
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -21,8 +21,7 @@
 @section('content')
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">Basic datatable
-                <a href="{{route('admin.package.create')}}" class="btn btn-link"> <i class="icon-stack-plus mr-1"></i> Add Coffee Packege</a>
+            <h5 class="card-title">Delivari History
             </h5>
             <div class="header-elements">
                 <div class="list-icons">
@@ -39,36 +38,34 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Item Name</th>
-                    <th>Subscription Type</th>
-                    <th>Interval Count</th>
-                    <th>Price</th>
-                    <th class="text-center">Actions</th>
+                    <th>Member Name</th>
+                    <th>Email</th>
+                    <th>Plan Name</th>
+                    <th>Product Name</th>
+                    <th>Delivari Type</th>
+                    <th>Status</th>
+                    <th>Delivari Date</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($plans as $plan)
+                @foreach($delivari as $d)
                 <tr>
-                    <td>{{$loop->index+1}}</td>
-                 <td>{{$plan->name}}</td>
-                 <td>{{$plan->intervals}}</td>
-                 <td>{{$plan->interval_count}}</td>
-                 <td>{{$plan->cost}}</td>
-                  <td class="text-center">
-                        <div class="list-icons">
-                            <div class="dropdown">
-                                <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                    <i class="icon-menu9"></i>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{route('admin.package.show', $plan->id)}}" class="dropdown-item"><i class="icon-eye"></i> View</a>
-                                    <a href="{{route('admin.package.edit', $plan->id)}}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
-                                    <a href="" data-url="{{route('admin.package.destroy', $plan->id)}}" class="dropdown-item" id="delete_item" data-id="{{ $plan->id }}"><i class="icon-trash"></i> Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
+                 <td>{{$loop->index+1}}</td>
+                 <td>{{$d->user->first_name}} {{$d->user->last_name}}</td>
+                 <td>{{$d->user->email}}</td>
+                 <td>{{$d->plan->name}}</td>
+                 <td>{{$d->plan->coffee->title}}</td>
+                 <td>Every {{$d->plan->interval_count}} {{$d->plan->intervals}}</td>
+                 <td>
+                   
+                      <span class="badge badge-success">Confirm</span>
+                  
+                 </td>
+                 <td>
+                   <span class="badge badge-info"> {{date("F d Y",strtotime($d->delivary_date))}}</span>
+                   
+                    
+                  </td>
                 </tr>
                     @endforeach
                 </tbody>
@@ -83,7 +80,7 @@
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
 <script>
-       $('.datatable-basic').DataTable({
+      $('.datatable-basic').DataTable({
         responsive: true
       });
 </script>

@@ -61,6 +61,7 @@ class PackageController extends Controller
            $planm =new Plan;
            $planm->name =$request->name;
            $planm->slug =str_slug($request->name);
+           $planm->product =$request->stripe_plan;
            $planm->stripe_plan =$plan->id;
            $planm->cost =$plan->amount;
            $planm->intervals =$request->intervals;
@@ -120,8 +121,6 @@ class PackageController extends Controller
 
            $planm->name =$request->name;
            $planm->slug =str_slug($request->name);
-           $planm->intervals =$request->intervals;
-           $planm->interval_count =$request->interval_count;
            $planm->description =$request->description;
            $planm->save();
 

@@ -57,11 +57,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
    Route::get('/dashboard', function(){
        return view('admin.dashboard');
    })->name('dashboard');
+   //profile
+   Route::get('/profile', 'DashboardController@profile')->name('profile');
+   Route::post('/profile/update','DashboardController@profile_up')->name('profile.update');
+   Route::post('/password','DashboardController@pass_change')->name('password');
 
    Route::resource('package', 'PackageController');
    Route::resource('coffee', 'CoffeeController');
    Route::get('/member','MemberController@index')->name('member');
    Route::get('/nextdelivery','MemberController@nextdelivery')->name('nextdelivery');
+   Route::get('/delivari/order/{id}','MemberController@delivari_order')->name('delivari.order');
+   Route::get('/delivari/history','MemberController@delivari_history')->name('delivari.history');
    Route::get('/message','MessegeController@index')->name('messege.index');
    Route::get('/message/send','MessegeController@create')->name('messege.send');
    Route::post('/message/send','MessegeController@store')->name('messege.postsend');

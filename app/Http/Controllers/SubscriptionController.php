@@ -8,6 +8,7 @@ use Session;
 use Carbon\Carbon;
 use App\User;
 use Auth;
+use App\Notifications\InvoicePaid;
 
 class SubscriptionController extends Controller
 {
@@ -25,6 +26,8 @@ class SubscriptionController extends Controller
             ->create($request->stripeToken);
 
         $user->charge(4900, ['currency' => 'dkk', 'description' => 'A charge for something']);
+        $invoices = $user->invoices();
+        $user->notify(new InvoicePaid($invoices,$user));
         
         // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
         Session::flash ( 'success-message', 'Payment done successfully !' );
@@ -39,6 +42,14 @@ class SubscriptionController extends Controller
     {
         $id =auth()->user()->id;
         $user =User::with('subscrip')->findOrFail($id);
+        $invoices = $user->invoices();
+
+          \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+          $invo=\Stripe\Invoice::upcoming(["customer" => "cus_FrXIiLA9Omfa33"]);
+          
+
+
         return view('member.subscription',compact('user'));
     }
 

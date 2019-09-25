@@ -70,6 +70,8 @@
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
 <script src="{{ asset('asset/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js') }}"></script>
 <script>
-      $('.datatable-basic').DataTable();
+        $('.datatable-basic').DataTable({
+        responsive: true
+      });
 </script>
 @endpush

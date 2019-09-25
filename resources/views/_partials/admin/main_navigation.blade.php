@@ -20,10 +20,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.dashboard')}}" class="nav-link{{ (Request::is('admin') OR Request::is('admin/dashboard')) ? ' acive' : '' }}">
+            <a href="{{route('admin.delivari.history')}}" class="nav-link{{ Request::is('admin//delivari/history*') ? ' active' : '' }}">
                 <i class="icon-chart"></i>
                 <span>
-					{{_('Sales')}}
+					{{_('Delivary History')}}
 				</span>
             </a>
         </li>

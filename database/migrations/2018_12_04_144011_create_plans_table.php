@@ -17,6 +17,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('product')->nullable();
             $table->string('stripe_plan');
             $table->float('cost');
             $table->string('intervals')->nullable();

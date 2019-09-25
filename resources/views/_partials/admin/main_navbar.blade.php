@@ -51,6 +51,7 @@
 {{--                    <a href="{{ route('admin.password') }}" class="dropdown-item"><i class="icon-lock4"></i> @lang('menu.change_password')</a>--}}
                     <div class="dropdown-divider"></div>
                     {{-- <a href="#" class="dropdown-item"><i class="icon-cog5"></i> @lang('menu.account_setting')</a> --}}
+                      <a href="{{ route('admin.profile') }}" class="dropdown-item"><i class="icon-cog5"></i> {{__('profile')}}</a>
                     <a class="dropdown-item" href="{{ route('admin.logout') }}"
                         onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

@@ -21,7 +21,7 @@
 @section('content')
 <div class="card">
     <div class="card-header header-elements-inline">
-        <h5 class="card-title">Add New Package
+        <h5 class="card-title">@if (isset($model))Plan Update @else  Add New Package  @endif
             <a href="{{route('admin.package.index')}}" class="btn btn-link"> <i class="icon-eye mr-1"></i> Package List</a>
         </h5>
         <div class="header-elements">
@@ -49,11 +49,8 @@
                       {{ Form::select('stripe_plan',$coffee,null, ['class' => 'form-control select', 'data-placeholder' =>  __('Coffee'), 'data-parsley-errors-container' => '#client_category_error'])
                       }}
                     </div>
-                       @else
-                     <div class="form-group">
-                        {{ Form::label('name', __('Coffee Title') , ['class' => 'col-form-label']) }}
-                        {{ Form::text('up', null, ['class' => 'form-control', 'placeholder' =>  __('Coffee Title'),'readonly'=>'']) }}
-                    </div>
+                    @else
+                    <h5>You Can Only Change Plan Name Description</h5>
                   @endif
                 </div>
              

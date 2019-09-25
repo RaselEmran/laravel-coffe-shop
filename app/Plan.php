@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
+    protected $with =['coffee'];
     protected $fillable = [
         'name',
         'slug',
@@ -17,5 +18,10 @@ class Plan extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+      public function coffee()
+    {
+        return $this->belongsTo(Coffee::class,'product','product_id');
     }
 }
