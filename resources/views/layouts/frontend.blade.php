@@ -4,6 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Coffee Caps - Get cheap quality coffee capsules from the Coffee Boy</title>
     @stack('css_before')
@@ -18,6 +19,7 @@
     <!--    slick slider-->
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/slick/slick.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('frontend/slick/slick-theme.css')}}">
+        <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     <!--    custom css-->
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     @stack('css_after')
@@ -182,7 +184,15 @@
 </script>
 <!--    slick slider -->
 <script src="{{ asset('frontend/slick/slick.min.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
 <script src="{{ asset('frontend/js/slick-custom.js') }}" type="text/javascript"> </script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 @stack('js')
 </body>
 </html>

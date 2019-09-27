@@ -82,6 +82,10 @@ Route::view('behov', 'behov')->name('behov');
 Route::view('bestill', 'bestill')->name('bestill');
 Route::view('checkout', 'checkout')->name('checkout');
 
+Route::get('/step-one','FrontController@step_one')->name('step-one');
+Route::get('/step-two','FrontController@step_two')->name('step-two');
+Route::get('/step-three','FrontController@step_three')->name('step-three');
+
 Route::get('/landing/pages','LandingController@index')->name('landing');
 Route::post('/card-payment','LandingController@payment')->name('card-payment');
 Route::get('/stripe','LandingController@stripe')->name('stripe');

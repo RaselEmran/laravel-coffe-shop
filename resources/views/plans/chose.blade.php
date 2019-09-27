@@ -170,7 +170,7 @@ function stripeTokenHandler(token) {
                     <div class='form-row'>
                         <div class='col-md-12'>
                             <div class='form-control total btn btn-info'>
-                                One Time Charge: <span class='amount'>49 Dkk</span>
+                                One Time Charge: <span class='amount'>29 Dkk</span>
                             </div>
                         </div>
                     </div>
@@ -187,10 +187,7 @@ function stripeTokenHandler(token) {
                         </div>
                     </div>
                 </form>
-                @if ((Session::has('success-message')))
-                <div class="alert alert-success col-md-12">{{
-                    Session::get('success-message') }}</div>
-                @endif @if ((Session::has('fail-message')))
+                 @if ((Session::has('fail-message')))
                 <div class="alert alert-danger col-md-12">{{
                     Session::get('fail-message') }}</div>
                 @endif

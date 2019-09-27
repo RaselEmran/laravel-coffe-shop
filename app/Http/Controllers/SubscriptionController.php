@@ -22,16 +22,16 @@ class SubscriptionController extends Controller
         $user=session::get('user');
         
         $user->newSubscription('main', $plan->stripe_plan)
-            // ->trialUntil(Carbon::now())
+            ->trialDays(10)
             ->create($request->stripeToken);
 
-        $user->charge(4900, ['currency' => 'dkk', 'description' => 'A charge for something']);
+        $user->charge(2900, ['currency' => 'dkk', 'description' => 'A charge for something']);
         $invoices = $user->invoices();
         $user->notify(new InvoicePaid($invoices,$user));
         
         // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
-        Session::flash ( 'success-message', 'Payment done successfully !' );
-        return redirect()->back ();
+        Session::flash ( 'success-message', 'Thank You For Subscription Ypu get Email !' );
+        return redirect()->route('bestill');
       
         Session::flash ( 'fail-message', "Error! Please Try again." );
         return redirect()->back ();

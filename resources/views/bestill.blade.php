@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="container bg-white py-5">
+    <div class="container bg-white py-5" id="main_body">
         <div class="row">
             <div class="col-md-6">
                 <img src="{{ asset('frontend/img/trial-step-boxes.jpg')}}" alt="" width="100%">
@@ -42,8 +42,8 @@
                         <p class="h2 only"> Only 29, - </p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="{{ route('checkout') }}">
-                            <button type="button" class="btn btn-dark text-uppercase px-5 py-3 font-weight-bold ">Click Here</button></a>
+                        {{-- <a href="{{ route('checkout') }}"> --}}
+                            <button type="button" class="btn btn-dark text-uppercase px-5 py-3 font-weight-bold " id="first_step">Click Here</button>{{-- </a> --}}
                     </div>
                 </div>
             </div>
@@ -204,3 +204,218 @@
     </div>
     <!--    fotter top start -->
 @endsection
+
+@push('js')
+ <script>
+     $("#first_step").on('click',function(){
+      
+
+           $.ajax({
+
+              type: 'GET',
+              url: "{{URL::to('/step-one')}}",
+              dateType: 'html',
+              success: function(data){
+                $("#main_body").html("");
+                $("#main_body").html(data);
+                console.log(data);
+             
+               }
+              
+            });
+     });
+
+     $(document).on('click','#pkg_button',function(){
+            var pkg =$(this).data('package');
+            var price =$(this).data('price');
+            var product =$(this).data('product');
+
+           $.ajax({
+
+              type: 'GET',
+              url: "{{URL::to('/step-two')}}",
+              data : {pkg:pkg,price:price,product:product},
+              dateType: 'html',
+              success: function(data){
+                $("#main_body").html("");
+                $("#main_body").html(data);
+               console.log(data);
+               }
+              
+            });
+     });
+ </script>
+ <script>
+        $(document).on('click','#pkg1_sub3',function(){
+            var pkg =$("#pkg").val();
+            var product =$("#product_id").val();
+            var price =$("#pkg_price").val();
+            var pkg_sub =$(this).data('id');
+            var plan =$(this).data('plan');
+            console.log(price);
+            $.ajax({
+
+              type: 'GET',
+              url: "{{URL::to('/step-three')}}",
+              data : {pkg:pkg,price:price,product:product,pkg_sub:pkg_sub,plan:plan},
+              dateType: 'html',
+              success: function(data){
+                $("#main_body").html("");
+                $("#main_body").html(data);
+               console.log(data);
+               }
+              
+            });
+            // $("#show_price").text(price);
+            // $("#show_total").text(price);
+            // $("#price").val(price);
+            // $("#total").val(price);
+            // $("#pkg_id").val(pkg);
+            // $("#pkg_sub_id").val(pkg1_sub3);
+            // $("#coffee_id").val(product);
+            // $("#plan_id").val(plan);
+
+
+        });
+
+         $(document).on('click','#pkg1_sub2',function(){
+            var pkg =$("#pkg").val();
+            var price =$("#pkg_price").val();
+            var pkg_sub =$(this).data('id');
+            var product =$("#product_id").val();
+            var plan =$(this).data('plan');
+
+          $.ajax({
+
+              type: 'GET',
+              url: "{{URL::to('/step-three')}}",
+              data : {pkg:pkg,price:price,product:product,pkg_sub:pkg_sub,plan:plan},
+              dateType: 'html',
+              success: function(data){
+                $("#main_body").html("");
+                $("#main_body").html(data);
+               console.log(data);
+               }
+              
+            });
+
+            // $("#show_price").text(price);
+            // $("#show_total").text(price);
+            //  $("#price").val(price);
+            // $("#total").val(price);
+            // $("#pkg_id").val(pkg);
+            // $("#pkg_sub_id").val(pkg1_sub2);
+            // $("#plan_id").val(plan);
+            // console.log(plan);
+
+        });
+
+        $(document).on('click','#pkg1_sub1',function(){
+            var pkg =$("#pkg").val();
+            var price =$("#pkg_price").val();
+            var pkg_sub =$(this).data('id');
+            var product =$("#product_id").val();
+            var plan =$(this).data('plan');
+
+            $.ajax({
+
+              type: 'GET',
+              url: "{{URL::to('/step-three')}}",
+              data : {pkg:pkg,price:price,product:product,pkg_sub:pkg_sub,plan:plan},
+              dateType: 'html',
+              success: function(data){
+                $("#main_body").html("");
+                $("#main_body").html(data);
+               console.log(data);
+               }
+              
+            });
+
+            // $("#show_price").text(price);
+            // $("#show_total").text(price);
+            //  $("#price").val(price);
+            // $("#total").val(price);
+            // $("#pkg_id").val(pkg);
+            // $("#pkg_sub_id").val(pkg1_sub1);
+            // $("#coffee_id").val(product);
+            // $("#plan_id").val(plan);
+            // console.log(price);
+
+        });
+ </script>
+    <script>
+        $(document).on('submit','#content_form', function(e) {
+        e.preventDefault();
+        $('#submit').hide();
+        $('#submiting').show();
+        $(".error").remove();
+        var submit_url = $('#content_form').attr('action');
+        //Start Ajax
+        var formData = new FormData($("#content_form")[0]);
+        $.ajax({
+            url: submit_url,
+            type: 'POST',
+            data: formData,
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData: false,
+            dataType: 'JSON',
+            success: function(data) {
+                  if(data.status == 'danger'){
+                    toastr.error(data.message);
+
+
+                  }
+              else{
+                toastr.success(data.message);
+                $('#submit').show();
+                $('#submiting').hide();
+                $('#modal_remote').modal('toggle');
+                 if (data.goto) {
+                   setTimeout(function(){
+
+                     window.location.href=data.goto;
+                   },2500);
+                }
+
+            }
+            },
+            error: function(data) {
+                var jsonValue = data.responseJSON;
+                const errors = jsonValue.errors;
+                if (errors) {
+                    var i = 0;
+                    $.each(errors, function(key, value) {
+                        const first_item = Object.keys(errors)[i];
+                        const message = errors[first_item][0];
+                        if ($('#' + first_item).length > 0) {
+
+                            $('#' + first_item).after(function(){
+                                return "<div class='text-danger error'>"+value+"</div>";
+                            });
+
+                        }
+
+                        // $('#' + first_item).after('<div class="ajax_error" style="color:red">' + value + '</div');
+                        toastr.error(value);
+                        i++;
+                    });
+                } else {
+                    toastr.error(jsonValue.message);
+
+                }
+                $('#submit').show();
+                $('#submiting').hide();
+            }
+        });
+    });
+    </script>
+
+    <script>
+        @if ((Session::has('success-message')))
+        toastr.success({{
+        Session::get('success-message') }});
+        
+        @endif
+    </script>
+@endpush
